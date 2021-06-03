@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/Bat_Sprite_Sheet.png" type="Texture" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 20.0657
+height = 0.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "BatIdle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1 ]
+}
+
+[node name="Bat1" type="KinematicBody2D"]
+position = Vector2( 1910.6, 166.246 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.22363, -10.8966 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/BatIdle = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2.57251, 0.193436 )
+scale = Vector2( 4.14593, 3.1641 )
+texture = ExtResource( 1 )
+flip_h = true
+vframes = 3
+hframes = 5
+frame = 3
+
+[node name="CollisionZ" type="RayCast2D" parent="."]
+position = Vector2( 2.00745, -22.1409 )
+scale = Vector2( 2, 1 )
+enabled = true
+cast_to = Vector2( 0, -10 )
+collision_mask = 2

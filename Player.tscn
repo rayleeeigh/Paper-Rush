@@ -1,0 +1,142 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/paper.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 20.2154
+height = 0.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "PlayerJump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="PaperballPlayer" type="KinematicBody2D"]
+collision_mask = 114
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2.85603, -1.59099 )
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="CollisionShaped2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.301449, -1.92093 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/PlayerJump = SubResource( 2 )
+anims/PlayerMove = SubResource( 3 )
+
+[node name="CollisionX" type="RayCast2D" parent="."]
+position = Vector2( 11.4006, -2.11763 )
+scale = Vector2( 1, 5 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 18
+
+[node name="CollisionBack" type="RayCast2D" parent="."]
+position = Vector2( -11.0748, -2.21149 )
+scale = Vector2( 1, 5 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+collision_mask = 18
+
+[node name="CollisionY" type="RayCast2D" parent="."]
+position = Vector2( 0.313462, 13.7524 )
+scale = Vector2( 4, 1 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+collision_mask = 20
+
+[node name="CollisionZ" type="RayCast2D" parent="."]
+position = Vector2( 0.0494356, -17.5921 )
+scale = Vector2( 4, 1 )
+enabled = true
+cast_to = Vector2( 0, -5 )
+collision_mask = 16
+
+[node name="CollisionBoost" type="RayCast2D" parent="."]
+position = Vector2( 0.561867, 13.6721 )
+scale = Vector2( 4, 1 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+collision_mask = 64
+
+[node name="CollisionBoostDown" type="RayCast2D" parent="."]
+position = Vector2( 0.0791171, -17.5972 )
+scale = Vector2( 4, 1 )
+enabled = true
+cast_to = Vector2( 0, -5 )
+collision_mask = 64
+
+[node name="CollisionBoostBack" type="RayCast2D" parent="."]
+position = Vector2( -15.7949, -2.51689 )
+scale = Vector2( 1, 5 )
+enabled = true
+cast_to = Vector2( -5, 0 )
+collision_mask = 64
+
+[node name="CollisionBoostX" type="RayCast2D" parent="."]
+position = Vector2( 15.7547, -2.12004 )
+scale = Vector2( 1, 5 )
+enabled = true
+cast_to = Vector2( 5, 0 )
+collision_mask = 64
+
+[node name="CollisionDirectionX" type="RayCast2D" parent="."]
+position = Vector2( 11.4699, -2.40193 )
+scale = Vector2( 1, 5 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 128
+
+[node name="CollisionDirectionY" type="RayCast2D" parent="."]
+position = Vector2( 0.561867, 13.5541 )
+scale = Vector2( 4, 1 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+collision_mask = 128
+
+[node name="RevertDirectionY" type="RayCast2D" parent="."]
+position = Vector2( 0.679852, 13.6721 )
+scale = Vector2( 4, 1 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+collision_mask = 256
+
+[node name="RevertDirectionBack" type="RayCast2D" parent="."]
+position = Vector2( -10.8288, -2.00349 )
+scale = Vector2( 1, 5 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+collision_mask = 256

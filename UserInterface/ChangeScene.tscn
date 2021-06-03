@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UserInterface/Play.gd" type="Script" id=1]
+
+[node name="ChangeScene" type="Button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -44.0
+margin_top = -17.0
+margin_right = 44.0
+margin_bottom = 17.0
+size_flags_vertical = 3
+text = "Play"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+next_scene_path = "res://Main.tscn"
+[connection signal="button_up" from="." to="." method="_on_Play_button_up"]
